@@ -136,7 +136,7 @@ const CriaFicha = () => {
 
    const NomesStatus = () => {
       return(
-         <div className="flex flex-col p-0 m-5 gap-4 ">
+         <div className="flex flex-col p-0 m-5 gap-4">
             {status.map((item, index) => (
                <p className="m-0" key={index}>{item}</p>
             ))}
@@ -147,13 +147,13 @@ const CriaFicha = () => {
    const HandleInputs = () => {
       return (
          valoresInput.map((item, index) => (
-            <input className='bg-cyan-100' type="number" id={item.id} value={item.value} onChange={valorSetar} key={index} />
+            <input className='bg-gray-600 text-white' type="number" id={item.id} value={item.value} onChange={valorSetar} key={index} />
          ))
       )
    }
 
    const ButtonStyle = ({children, className, ...props }) => (
-      <button {...props} className="bg-neutral-700 text-sm text-neutral-200 font-bold border border-gray-300 rounded-sm font-['Arial'] cursor-pointer transition-colors duration-200 ease-in-out ${className}">{children}</button>
+      <button {...props} className="bg-neutral-700 text-sm text-neutral-200 font-bold border border-gray-300 rounded-sm font-['Arial'] cursor-pointer transition-colors duration-200 ease-in-out ${className} px-2" >{children}</button>
    )
 
    return (
@@ -175,26 +175,21 @@ const CriaFicha = () => {
                <NomesStatus/>
             </div>
             <div className="flex flex-col p-0 m-5 gap-4" >
-               <input className='bg-cyan-100 text-black' type="text" id='nome' value={nome} onChange={nomeSetar} />
+               <input className='bg-gray-600 text-white' type="text" id='nome' value={nome} onChange={nomeSetar} />
                <HandleInputs/>
                {numInputs > 9 && renderInputs()}
             </div>
+            {/* aqui */}
             <div className="flex flex-col m-5 gap-4">
-               <button onClick={onSave} className="button">save</button>
-               <button onClick={onLoad} className="button">load</button>
-               <button onClick={onAdd} className="button">+</button>
-               {numInputs > 9 && (<button onClick={onRemove} className="button">
-                  -
-               </button>)}
-               <button onClick={() => onDelete(nome)} className="button">
-                  remover perfil
-               </button>
+               <ButtonStyle onClick={onSave}>save</ButtonStyle>
+               <ButtonStyle onClick={onLoad}>load</ButtonStyle>
+               <ButtonStyle onClick={onAdd}>+</ButtonStyle>
+               {numInputs > 9 && (<ButtonStyle onClick={onRemove}>-</ButtonStyle>)}
+               <ButtonStyle onClick={() => onDelete(nome)}>remover perfil</ButtonStyle>
                <input
-                  type="file" accept="image/*" id="fileImagem" ref={fileInputRef} onChange={handleImageUpload}
+                  type="file" accept="image/*" id="fileImagem" ref={fileInputRef} onChange={handleImageUpload} className="hidden"
                />
-               <button className="button" onClick={handleButtonClick}>
-                  add imagem
-               </button>
+               <ButtonStyle onClick={handleButtonClick}>add imagem</ButtonStyle>
             </div>
          </div>
 
